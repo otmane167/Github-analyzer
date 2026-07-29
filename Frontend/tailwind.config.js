@@ -1,34 +1,35 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
-        canvas: '#0a0d12',
-        surface: '#11161d',
-        surfaceRaised: '#161c25',
-        border: '#232b36',
-        borderMuted: '#1b212a',
-        text: '#e6edf3',
-        textMuted: '#8892a0',
-        textFaint: '#5b6472',
-        accent: '#3fb950',
-        accentDim: '#2ea043',
-        link: '#58a6ff',
-        warn: '#d29922',
-        danger: '#f85149',
+        canvas: 'rgb(var(--color-canvas) / <alpha-value>)',
+        surface: 'rgb(var(--color-surface) / <alpha-value>)',
+        surfaceRaised: 'rgb(var(--color-surface-raised) / <alpha-value>)',
+        border: 'rgb(var(--color-border) / <alpha-value>)',
+        borderMuted: 'rgb(var(--color-border-muted) / <alpha-value>)',
+        text: 'rgb(var(--color-text) / <alpha-value>)',
+        textMuted: 'rgb(var(--color-text-muted) / <alpha-value>)',
+        textFaint: 'rgb(var(--color-text-faint) / <alpha-value>)',
+        accent: 'rgb(var(--color-accent) / <alpha-value>)',
+        accentDim: 'rgb(var(--color-accent-dim) / <alpha-value>)',
+        link: 'rgb(var(--color-link) / <alpha-value>)',
+        warn: 'rgb(var(--color-warn) / <alpha-value>)',
+        danger: 'rgb(var(--color-danger) / <alpha-value>)',
       },
       fontFamily: {
         mono: ['"JetBrains Mono"', '"Fira Code"', 'ui-monospace', 'monospace'],
         sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
       },
       boxShadow: {
-        glow: '0 0 0 1px rgba(63,185,80,0.25), 0 0 24px rgba(63,185,80,0.12)',
+        glow: '0 0 0 3px rgb(var(--color-link) / 0.15)',
+        card: '0 1px 0 rgb(var(--color-text) / 0.04)',
       },
       keyframes: {
         blink: { '0%, 49%': { opacity: '1' }, '50%, 100%': { opacity: '0' } },
         rise: { '0%': { opacity: '0', transform: 'translateY(8px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
-        scanline: { '0%': { backgroundPosition: '0 0' }, '100%': { backgroundPosition: '0 40px' } },
       },
       animation: {
         blink: 'blink 1s step-start infinite',

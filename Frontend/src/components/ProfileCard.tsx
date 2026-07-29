@@ -1,22 +1,26 @@
-import { AnalysisResponse } from '../services/githubApi'
-import ScoreRing from './ScoreRing'
+import { AnalysisResponse } from "../services/githubApi";
+import ScoreRing from "./ScoreRing";
 
 interface Props {
-  data: AnalysisResponse
+  data: AnalysisResponse;
 }
 
 export default function ProfileCard({ data }: Props) {
   return (
-    <div className="animate-rise rounded-xl border border-border bg-surface p-6 md:p-8">
+    <div className="p-6 border animate-rise rounded-xl border-border bg-surface shadow-card md:p-8">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-5">
           <img
             src={data.avatarUrl}
             alt={data.username}
-            className="h-20 w-20 rounded-full border-2 border-border object-cover shadow-glow"
+            className="object-cover w-20 h-20 border rounded-full border-border"
           />
+
           <div>
-            <h2 className="text-2xl font-bold text-text">{data.name || data.username}</h2>
+            <h2 className="text-2xl font-bold text-text">
+              {data.name || data.username}
+            </h2>
+
             <a
               href={`https://github.com/${data.username}`}
               target="_blank"
@@ -25,12 +29,20 @@ export default function ProfileCard({ data }: Props) {
             >
               @{data.username}
             </a>
-            <div className="mt-3 flex gap-5 font-mono text-sm text-textMuted">
+
+            <div className="flex gap-5 mt-3 font-mono text-sm text-textMuted">
               <span>
-                <span className="text-text font-semibold">{data.followers.toLocaleString()}</span> followers
+                <span className="font-semibold text-text">
+                  {data.followers.toLocaleString()}
+                </span>{" "}
+                followers
               </span>
+
               <span>
-                <span className="text-text font-semibold">{data.publicRepos}</span> repos
+                <span className="font-semibold text-text">
+                  {data.publicRepos}
+                </span>{" "}
+                repos
               </span>
             </div>
           </div>
@@ -39,5 +51,5 @@ export default function ProfileCard({ data }: Props) {
         <ScoreRing score={data.score} level={data.level} />
       </div>
     </div>
-  )
+  );
 }
