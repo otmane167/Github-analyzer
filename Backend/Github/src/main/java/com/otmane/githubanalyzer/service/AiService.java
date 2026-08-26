@@ -4,6 +4,7 @@ import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.ObjectMapper;
 import com.otmane.githubanalyzer.dto.AiRecommendationDTO;
 import com.otmane.githubanalyzer.dto.RepoDTO;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -18,8 +19,11 @@ public class AiService {
     private final RestTemplate restTemplate = new RestTemplate();
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    private static final String OLLAMA_URL = "http://localhost:11434/api/generate";
-    private static final String MODEL = "llama3.2";
+    @Value("${ollama.url}")
+    private String OLLAMA_URL;
+
+    @Value("${ollama.model}")
+    private String MODEL;
 
     public AiRecommendationDTO getRecommendations(String username, List<RepoDTO> repos) {
 

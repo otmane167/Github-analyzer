@@ -1,0 +1,14 @@
+# Dev image: runs Vite/CRA dev server with hot reload
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+# Source gets bind-mounted over this in docker-compose
+COPY . .
+
+EXPOSE 5173
+
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

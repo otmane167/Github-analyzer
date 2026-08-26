@@ -1,0 +1,18 @@
+# Dev image: keeps Maven + JDK so ./mvnw spring-boot:run works with live reload
+FROM eclipse-temurin:21-jdk-alpine
+
+WORKDIR /app
+
+# Copy only the wrapper + pom first so dependency layer is cached
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+RUN ./mvnw dependency:go-offline -B
+
+# Source gets bind-mounted over this in docker-compose, this COPY is just
+# a fallback so the image also works standalone (e.g. `docker build .`)
+COPY src ./src
+
+EXPOSE 8080
+
+CMD ["./mvnw", "spring-boot:run"]
