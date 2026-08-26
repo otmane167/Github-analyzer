@@ -7,17 +7,20 @@ interface Props {
 
 export default function ProfileCard({ data }: Props) {
   return (
-    <div className="p-6 border animate-rise rounded-xl border-border bg-surface shadow-card md:p-8">
+    <div className="p-6 border animate-rise rounded-2xl glass shadow-card md:p-8">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-5">
-          <img
-            src={data.avatarUrl}
-            alt={data.username}
-            className="object-cover w-20 h-20 border rounded-full border-border"
-          />
+          <div className="relative">
+            <div className="absolute rounded-full -inset-0.5 bg-gradient-to-br from-accent to-link opacity-70 blur-sm" />
+            <img
+              src={data.avatarUrl}
+              alt={data.username}
+              className="relative object-cover w-20 h-20 border-2 rounded-full border-canvas"
+            />
+          </div>
 
           <div>
-            <h2 className="text-2xl font-bold text-text">
+            <h2 className="text-2xl font-bold tracking-wide font-display text-text">
               {data.name || data.username}
             </h2>
 

@@ -9,13 +9,13 @@ export default function LanguageBar({ languages }: Props) {
 
   if (entries.length === 0) {
     return (
-      <div className="text-textFaint text-sm font-mono">no language data detected</div>
+      <div className="font-mono text-sm text-textFaint">no language data detected</div>
     )
   }
 
   return (
     <div className="w-full animate-rise">
-      <div className="flex h-2.5 w-full overflow-hidden rounded-full bg-borderMuted">
+      <div className="flex w-full h-2.5 overflow-hidden rounded-full bg-borderMuted shadow-glow">
         {entries.map(([lang, pct], i) => (
           <div
             key={lang}
@@ -23,22 +23,23 @@ export default function LanguageBar({ languages }: Props) {
               width: `${pct}%`,
               backgroundColor: colorFor(lang),
               animationDelay: `${i * 60}ms`,
+              boxShadow: `0 0 8px ${colorFor(lang)}66`,
             }}
-            className="h-full first:rounded-l-full last:rounded-r-full transition-all duration-700 ease-out"
+            className="h-full transition-all duration-700 ease-out first:rounded-l-full last:rounded-r-full"
             title={`${lang} — ${pct.toFixed(1)}%`}
           />
         ))}
       </div>
 
-      <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+      <div className="flex flex-wrap mt-4 gap-x-5 gap-y-2">
         {entries.map(([lang, pct]) => (
           <div key={lang} className="flex items-center gap-1.5 text-sm">
             <span
-              className="h-2.5 w-2.5 rounded-full shrink-0"
-              style={{ backgroundColor: colorFor(lang) }}
+              className="h-2.5 w-2.5 shrink-0 rounded-full"
+              style={{ backgroundColor: colorFor(lang), boxShadow: `0 0 6px ${colorFor(lang)}88` }}
             />
-            <span className="text-text font-medium">{lang}</span>
-            <span className="text-textFaint font-mono text-xs">{pct.toFixed(1)}%</span>
+            <span className="font-medium text-text">{lang}</span>
+            <span className="font-mono text-xs text-textFaint">{pct.toFixed(1)}%</span>
           </div>
         ))}
       </div>

@@ -35,24 +35,37 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-canvas">
-      <div className="relative flex flex-col max-w-4xl min-h-screen px-6 mx-auto py-14">
-        {/* Hero */}
-        <header className="flex flex-col items-center gap-2 mb-10 text-center">
-          <div className="absolute right-6 top-6">
-            <ThemeToggle />
+    <div className="relative min-h-screen bg-canvas">
+      <div className="aurora" />
+      <div className="dot-grid" />
+
+      <div className="relative z-10 flex flex-col min-h-screen max-w-3xl px-6 mx-auto py-10 sm:py-14">
+
+        {/* Header */}
+        <header className="mb-10">
+          <div className="flex items-start justify-between gap-6">
+            <div>
+              <div className="mb-2 font-mono text-[10px] tracking-[0.2em] uppercase bg-gradient-to-r from-accent to-link bg-clip-text text-transparent">
+                neural scan // active
+              </div>
+              <h1 className="text-2xl font-bold tracking-wide font-display text-text sm:text-3xl">
+                GitHub Signature Scan
+              </h1>
+              <p className="max-w-md mt-2 text-sm text-textMuted">
+                Point it at a public profile to read repositories, language
+                signature, and a scored developer readout.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-end gap-3 shrink-0">
+              <ThemeToggle />
+              <span className="relative flex items-center justify-center w-6 h-6">
+                <span className="absolute inset-0 border rounded-full border-accent/40" />
+                <span className="w-2.5 h-2.5 rounded-full bg-link status-dot" />
+              </span>
+            </div>
           </div>
-          <div className="flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-accent">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-            developer analyzer
-          </div>
-          <h1 className="text-3xl font-bold tracking-tight text-text sm:text-4xl">
-            Point it at a <span className="text-link">GitHub</span> profile.
-          </h1>
-          <p className="max-w-lg text-sm text-textMuted">
-            Pulls public repos, breaks down languages, and scores the profile —
-            straight from the GitHub REST API.
-          </p>
+          <div className="mt-6 scan-divider" />
         </header>
 
         {/* Search */}
@@ -63,34 +76,40 @@ export default function App() {
         {/* States */}
         <div className="flex-1 mt-10">
           {error && (
-            <div className="px-4 py-3 font-mono text-sm border rounded-lg animate-rise border-danger/30 bg-danger/10 text-danger">
+            <div className="px-4 py-3 font-mono text-sm border rounded-xl animate-rise border-danger/40 bg-danger/10 text-danger">
               error: {error}
             </div>
           )}
 
           {!error && !data && !loading && searched === false && (
-            <div className="flex flex-col items-center gap-3 py-20 text-center border border-dashed rounded-xl border-border">
-              <p className="font-mono text-sm text-textFaint">
-                waiting for input<span className="animate-blink">_</span>
+            <div className="flex flex-col items-center gap-3 py-24 text-center border rounded-2xl glass">
+              <span className="relative flex items-center justify-center w-10 h-10">
+                <span className="absolute inset-0 border rounded-full border-accent/50 radar-ring" />
+                <span className="w-2 h-2 rounded-full bg-link" />
+              </span>
+              <p className="font-mono text-xs text-textFaint">
+                awaiting target<span className="animate-blink">_</span>
               </p>
             </div>
           )}
 
           {loading && (
-            <div className="flex flex-col items-center gap-3 py-20 text-center">
-              <div className="w-8 h-8 border-2 rounded-full animate-spin border-border border-t-accent" />
-              <p className="font-mono text-xs text-textFaint">fetching from github…</p>
+            <div className="flex flex-col items-center gap-4 py-24 text-center">
+              <span className="relative flex items-center justify-center w-12 h-12">
+                <span className="absolute inset-0 border-2 rounded-full border-accent/30 border-t-accent radar-ring" style={{ animationDuration: '1.1s' }} />
+              </span>
+              <p className="font-mono text-xs text-textFaint">scanning repository data…</p>
             </div>
           )}
 
           {data && !loading && (
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-5">
               <ProfileCard data={data} />
 
-              <div className="p-6 border animate-rise rounded-xl border-border bg-surface shadow-card md:p-8">
-                <h3 className="mb-4 font-mono text-xs tracking-widest uppercase text-textFaint">
-                  languages
-                </h3>
+              <div className="p-6 border animate-rise rounded-2xl glass glass-cyan shadow-card md:p-8">
+                <div className="mb-5 font-mono text-[10px] tracking-[0.16em] uppercase text-textFaint">
+                  language signature
+                </div>
                 <LanguageBar languages={data.languages} />
               </div>
 
@@ -101,6 +120,12 @@ export default function App() {
           )}
         </div>
 
+        <footer className="pt-6 mt-14 border-t border-border/50">
+          <div className="flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] uppercase tracking-widest text-textFaint">
+            <span>dev.scan</span>
+            <span>source — github rest api</span>
+          </div>
+        </footer>
       </div>
     </div>
   )

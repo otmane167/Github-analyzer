@@ -20,11 +20,13 @@ export default {
         danger: 'rgb(var(--color-danger) / <alpha-value>)',
       },
       fontFamily: {
-        mono: ['"JetBrains Mono"', '"Fira Code"', 'ui-monospace', 'monospace'],
-        sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['"Orbitron"', 'sans-serif'],
+        sans: ['"Sora"', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       boxShadow: {
-        glow: '0 0 0 3px rgb(var(--color-link) / 0.15)',
+        glow: '0 0 24px -6px rgb(var(--color-accent) / 0.5)',
+        glowCyan: '0 0 20px -6px rgb(var(--color-link) / 0.5)',
         card: '0 1px 0 rgb(var(--color-text) / 0.04)',
       },
       keyframes: {

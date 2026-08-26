@@ -12,12 +12,11 @@ export default function RepoList({ repos, username }: Props) {
     .slice(0, 6);
 
   return (
-    <div className="p-6 border animate-rise rounded-xl border-border bg-surface shadow-card md:p-8">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="font-mono text-xs tracking-widest uppercase text-textFaint">
-          Top Repositories
-        </h3>
-
+    <div className="p-6 border animate-rise rounded-2xl glass shadow-card md:p-8">
+      <div className="flex items-center justify-between mb-5">
+        <div className="font-mono text-[10px] tracking-[0.16em] uppercase text-textFaint">
+          top repositories
+        </div>
         <span className="font-mono text-xs text-textFaint">
           {repos.length} total
         </span>
@@ -30,7 +29,7 @@ export default function RepoList({ repos, username }: Props) {
             href={`https://github.com/${username}/${repo.name}`}
             target="_blank"
             rel="noreferrer"
-            className="p-4 transition-colors border rounded-lg group border-border bg-surfaceRaised hover:border-accentDim"
+            className="p-4 transition-all border rounded-xl group border-border/60 bg-surfaceRaised/60 hover:border-link/50 hover:shadow-glowCyan"
           >
             <div className="flex items-center justify-between gap-2">
               <span className="font-medium truncate text-link group-hover:underline">
@@ -49,6 +48,7 @@ export default function RepoList({ repos, username }: Props) {
                     className="w-2 h-2 rounded-full"
                     style={{
                       backgroundColor: colorFor(repo.language),
+                      boxShadow: `0 0 6px ${colorFor(repo.language)}88`,
                     }}
                   />
                   {repo.language}
